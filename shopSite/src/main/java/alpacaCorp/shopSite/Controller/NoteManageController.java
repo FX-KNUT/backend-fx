@@ -23,8 +23,8 @@ import java.time.LocalDateTime;
 import java.util.Enumeration;
 import java.util.List;
 
-@Controller
 @Slf4j
+@RestController
 public class NoteManageController {
 
     NoteService noteService;
@@ -33,13 +33,13 @@ public class NoteManageController {
         this.noteService = noteService;
     }
 
-    @RequestMapping("/alpaca/QnA/noteList")
-    public String NoteList(Model model){
+    @RequestMapping("/community")
+    public List<Note> NoteList(Model model){
 
         List<Note> allNote = noteService.findAllNote();
         model.addAttribute("allNote", allNote);
-
-        return "QnA/noteList";
+//        return "QnA/noteList";
+        return allNote;
     }
 
     @RequestMapping("/alpaca/QnA/register")
@@ -107,18 +107,28 @@ public class NoteManageController {
         //근데 제어가 이동하기전에 dispatcher로 직접 url패턴 지정한곳으로 옮겨줄거임.
         return "QnA/noteList";
     }
-    @GetMapping("/alpaca/QnA/note/{noteId}")
-    public String findNote(@PathVariable("noteId") Long id,
+
+    @GetMapping("/post/{idx}")
+    public Note findNote(@PathVariable("idx") Long id,
                            Model model){
         Note note = noteService.findOne(id);
-        List comment = noteService.getComment(id);
-        if (comment != null){
-            model.addAttribute("comment", comment);
-        }
-        model.addAttribute("note", note);
+        log.info("========요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청요청");
+        log.info("{}",note);
 
-        return "QnA/noteContent";
+//        List comment = noteService.getComment(id);
+//        if (comment != null){
+//            model.addAttribute("comment", comment);
+//        }
+        return note;
     }
+
+
+
+
+
+
+
+
     @PostMapping("/alpaca/QnA/note/{postId}/registerComment")
     public String registerComment(HttpServletResponse response,
                                   @PathVariable("postId") Long id,
@@ -178,5 +188,15 @@ public class NoteManageController {
             e.printStackTrace();
         }
         return "QnA/noteList";
+    }
+
+
+
+    @RequestMapping("/test")
+    public List<Note> NoteListTest(Model model){
+
+        List<Note> allNote = noteService.findAllNote();
+        model.addAttribute("allNote", allNote);
+        return allNote;
     }
 }

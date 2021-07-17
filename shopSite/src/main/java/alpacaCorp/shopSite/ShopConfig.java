@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.support.MultipartFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Slf4j
 @Configuration
@@ -21,7 +23,7 @@ import org.springframework.web.multipart.support.MultipartFilter;
  *  excludeFilters = @ComponentScan.Filter(type= FilterType.ANNOTATION,
  *                 classes = Configuration.class)
  */
-public class ShopConfig {
+public class ShopConfig implements WebMvcConfigurer {
     @Bean
     public DataSource getDataSource()
     {
@@ -39,6 +41,14 @@ public class ShopConfig {
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
         return characterEncodingFilter;
+    }
+
+
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000");
     }
 
 }
