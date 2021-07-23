@@ -15,11 +15,11 @@ import java.util.List;
 
 @Controller
 public class ProfileManageController {
-    MemberService memberService;
+    ProfileService profileService;
 
     @Autowired
-    public ProfileManageController(MemberService memberService) {
-        this.memberService = memberService;
+    public ProfileManageController(ProfileService profileService) {
+        this.profileService = profileService;
     }
 
     /*
@@ -34,11 +34,12 @@ public class ProfileManageController {
 
     /*
      * 프로필 리스트 매핑
-     */
+
     @PostMapping("/profiles")
-    public List<Member> ProfileList(Model model) {
-        List<Member> profiles = memberService.findAll();
+    public List<Profile> ProfileList(Model model) {
+        List<Profile> profiles = profileService.findAll();
         model.addAttribute("profiles", profiles);
         return profiles;
     }
+    */
 }

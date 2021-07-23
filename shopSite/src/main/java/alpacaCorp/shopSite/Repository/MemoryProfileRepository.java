@@ -2,6 +2,7 @@ package alpacaCorp.shopSite.Repository;
 
 import alpacaCorp.shopSite.DTO.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class MemoryProfileRepository implements ProfileRepository{
 
     DataSource dataSource;
