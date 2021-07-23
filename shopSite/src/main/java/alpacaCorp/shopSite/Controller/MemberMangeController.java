@@ -21,6 +21,7 @@ public class MemberMangeController {
 
     MemberService memberService;
     MemberRepository memberRepository;
+
     @Autowired
     public MemberMangeController(MemberService memberService, MemberRepository memberRepository) {
         this.memberService = memberService;
@@ -35,18 +36,21 @@ public class MemberMangeController {
     public String View(Model model,
                        HttpServletRequest request,
                        @ModelAttribute Member member){
-        log.info("userid = {}, password = {}",member.getUserid(),member.getPassword());
+        log.info("userid = {}, password = {}",member.getId(),member.getPassword());
 //        MemberService bean = ac.getBean(MemberService.class);
-        Member findUser = memberService.findMember(member);
-        if(findUser==null){
+
+        Member userInfo = memberService.findMember(member);
+
+        if(userInfo == null){
             return "loginFail";
         }
-        String nickName = findUser.getNickName();
-        log.info("hello {}",nickName);
+
+        String name = userInfo.getName();
+        log.info("hello {}",name);
         //model.addAttribute("findUser",findUser);
         HttpSession session = request.getSession();
-        session.setAttribute("findUser", findUser);
-        model.addAttribute("findUser",findUser);
+        session.setAttribute("findUser", userInfo);
+        model.addAttribute("findUser",userInfo);
 
         return "login";
     }
@@ -62,14 +66,14 @@ public class MemberMangeController {
     }
 
     @RequestMapping("/alpaca/join/process")
-    public String JoinProcess(@RequestParam("userid") String id,
-                              @RequestParam("nickName") String nickName,
+    public String JoinProcess(@RequestParam("id") String id,
+                              @RequestParam("name") String name,
                               @RequestParam("password") String password,
                               @RequestParam("repassword") String repassword){
 //        MemberService bean = ac.getBean(MemberService.class);
         log.info("{}=={}========={}==================================",password,repassword,password.equals(repassword));
         if (password.equals(repassword)){
-            Member member = new Member(id,password,nickName);
+            Member member = new Member(id, password, name);
             boolean join = memberService.memberJoin(member);
             if(join==true){
                 return "login";
