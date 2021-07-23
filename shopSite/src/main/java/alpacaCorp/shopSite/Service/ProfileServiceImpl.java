@@ -5,6 +5,7 @@ import alpacaCorp.shopSite.Repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -20,6 +21,16 @@ public class ProfileServiceImpl implements ProfileService {
     public String addProfile(Profile profile) {
         profileRepository.save(profile);
         return profile.getId();
+    }
+
+    /**
+     * 중복 프로필 검증
+     */
+    public void validateDuplicateProfile(Profile profile) {
+        profileRepository.findById(profile.getId())
+                .ifPresent(p -> {
+                    throw new IllegalStateException("Already existed.");
+                });
     }
 
     @Override

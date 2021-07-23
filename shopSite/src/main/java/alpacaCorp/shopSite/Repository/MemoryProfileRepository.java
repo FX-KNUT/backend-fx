@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MemoryProfileRepository implements ProfileRepository{
 
@@ -87,5 +88,38 @@ public class MemoryProfileRepository implements ProfileRepository{
         }
 
         return null;
+    }
+
+    @Override
+    public Optional<Profile> findById(String id) {
+        String sql = "select * from where id=?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                Profile profile = new Profile();
+                profile.setId(rs.getString("id"));
+                profile.setName(rs.getString("name"));
+                profile.setColor(rs.getString("color"));
+                profile.setImg(rs.getString("img"));
+                profile.setStart_date(rs.getString("start_date"));
+                profile.setEnd_date(rs.getString("end_date"));
+                return Optional.of(profile);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            commonJDBC.close(conn, pstmt, rs);
+        }
+
+        return Optional.empty();
     }
 }
