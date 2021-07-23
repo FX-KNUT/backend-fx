@@ -19,6 +19,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public String addProfile(Profile profile) {
+        validateDuplicateProfile(profile);
         profileRepository.save(profile);
         return profile.getId();
     }
