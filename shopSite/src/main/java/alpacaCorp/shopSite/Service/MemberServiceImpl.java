@@ -5,6 +5,9 @@ import alpacaCorp.shopSite.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class MemberServiceImpl implements MemberService {
     MemberRepository memberRepository;
@@ -20,7 +23,22 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Optional<Member> findById(String id) {
+        return memberRepository.findById(id);
+    }
+
+    @Override
+    public List<Member> findByName(String name) {
+        return memberRepository.findByName(name);
+    }
+
+    @Override
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
+
+    @Override
     public Member findMember(Member member) {
-        return memberRepository.findUser(member);
+        return memberRepository.findMember(member);
     }
 }

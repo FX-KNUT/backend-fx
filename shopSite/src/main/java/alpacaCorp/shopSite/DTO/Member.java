@@ -5,14 +5,24 @@ import lombok.Data;
 
 @Data
 public class Member {
-
-    String userid;
+    /**
+     * ID, Name, Password, Color, Image, Start date, End date
+     */
+    String id;
+    String name;
     String password;
-    String nickName;
+    String color;
+    String img;
+    String start_date;
+    String end_date;
 
-    public Member(String userid, String password, String nickName) {
-        this.userid = userid;
+    public Member() {
+
+    }
+
+    public Member(String id, String name, String password) {
+        this.id = id;
+        this.name = name;
         this.password = password;
-        this.nickName = nickName;
     }
 }
