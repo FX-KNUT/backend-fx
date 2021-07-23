@@ -54,9 +54,6 @@ public class MemoryMemberRepository implements MemberRepository {
         return false;
     }
 
-    /**
-     * ID 값으로 회원 반환.
-     */
     @Override
     public Optional<Member> findById(String id) {
         String sql = "SELECT * FROM members WHERE id=?";
@@ -91,9 +88,7 @@ public class MemoryMemberRepository implements MemberRepository {
         }
         return Optional.empty();
     }
-    /**
-     * Name 값으로 회원 리스트 반환.
-     */
+
     @Override
     public List<Member> findByName(String name) {
         String sql = "SELECT * FROM members WHERE name=?";
@@ -132,9 +127,6 @@ public class MemoryMemberRepository implements MemberRepository {
         return null;
     }
 
-    /**
-     * 회원 리스트 반환.
-     */
     @Override
     public List<Member> findAll() {
         String sql = "SELECT * FROM members";

@@ -24,7 +24,7 @@ public class ProfileServiceImpl implements ProfileService {
         return profile.getId();
     }
 
-    /**
+    /*
      * 중복 프로필 검증
      */
     public void validateDuplicateProfile(Profile profile) {

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class Member {
-    /**
+    /*
      * ID, Name, Password, Color, Image, Start date, End date
      */
     String id;

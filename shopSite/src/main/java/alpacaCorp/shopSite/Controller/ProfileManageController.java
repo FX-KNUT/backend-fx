@@ -32,7 +32,7 @@ public class ProfileManageController {
     }
     */
 
-    /**
+    /*
      * 프로필 리스트 매핑
      */
     @PostMapping("/profiles")
