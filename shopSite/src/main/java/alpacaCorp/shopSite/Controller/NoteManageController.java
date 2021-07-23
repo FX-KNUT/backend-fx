@@ -58,7 +58,7 @@ public class NoteManageController {
         }else {
             ServletContext context = request.getServletContext();
             String realFolder = context.getRealPath("/");
-            String realPath=realFolder+findUser.getUserid();
+            String realPath=realFolder+findUser.getId(); // this code is changed.
             log.info("{}",realPath);
             File f = new File(realPath);
 
@@ -70,7 +70,7 @@ public class NoteManageController {
                         10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
                 Note note = new Note(multipartRequest.getParameter("subjectName")
                         ,multipartRequest.getParameter("content")
-                        , findUser.getUserid());
+                        , findUser.getId()); // this code is changed.
 
                 /*
                 [6번 줄]
