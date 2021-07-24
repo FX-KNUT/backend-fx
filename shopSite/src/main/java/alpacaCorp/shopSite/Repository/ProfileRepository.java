@@ -19,5 +19,5 @@ public interface ProfileRepository {
     /*
      * 특정 프로필 찾기
      */
-    Optional<Profile> findById(String id);
+    Optional<Profile> findById(Long id);
 }

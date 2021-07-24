@@ -68,7 +68,7 @@ public class MemberMangeController {
     }
 
     @RequestMapping("/alpaca/join/process")
-    public String JoinProcess(@RequestParam("id") String id,
+    public String JoinProcess(@RequestParam("id") Long id,
                               @RequestParam("name") String name,
                               @RequestParam("password") String password,
                               @RequestParam("repassword") String repassword){

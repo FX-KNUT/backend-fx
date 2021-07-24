@@ -38,7 +38,7 @@ public class MemoryProfileRepository implements ProfileRepository{
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, profile.getId());
+            pstmt.setLong(1, profile.getId());
             pstmt.setString(2, profile.getName());
             pstmt.setString(3, profile.getColor());
             pstmt.setString(4, profile.getImg());
@@ -72,7 +72,7 @@ public class MemoryProfileRepository implements ProfileRepository{
             while(rs.next()) {
                 Profile profile = new Profile();
 
-                profile.setId(rs.getString("id"));
+                profile.setId(rs.getLong("id"));
                 profile.setName(rs.getString("name"));
                 profile.setColor(rs.getString("color"));
                 profile.setImg(rs.getString("img"));
@@ -93,7 +93,7 @@ public class MemoryProfileRepository implements ProfileRepository{
     }
 
     @Override
-    public Optional<Profile> findById(String id) {
+    public Optional<Profile> findById(Long id) {
         String sql = "select * from where id=?";
 
         Connection conn = null;
@@ -103,12 +103,12 @@ public class MemoryProfileRepository implements ProfileRepository{
         try {
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 Profile profile = new Profile();
-                profile.setId(rs.getString("id"));
+                profile.setId(rs.getLong("id"));
                 profile.setName(rs.getString("name"));
                 profile.setColor(rs.getString("color"));
                 profile.setImg(rs.getString("img"));

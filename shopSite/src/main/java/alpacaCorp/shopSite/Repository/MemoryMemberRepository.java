@@ -37,7 +37,7 @@ public class MemoryMemberRepository implements MemberRepository {
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, member.getId());
+            pstmt.setLong(1, member.getId());
             pstmt.setString(2, member.getName());
             pstmt.setString(3, member.getPassword());
             pstmt.setString(4, member.getColor());
@@ -55,7 +55,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findById(String id) {
+    public Optional<Member> findById(Long id) {
         String sql = "SELECT * FROM members WHERE id=?";
 
         Connection conn = null;
@@ -65,13 +65,13 @@ public class MemoryMemberRepository implements MemberRepository {
         try {
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setLong(1, id);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 Member member = new Member();
 
-                member.setId(rs.getString("id"));
+                member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
                 member.setColor(rs.getString("color"));
@@ -108,7 +108,7 @@ public class MemoryMemberRepository implements MemberRepository {
             while (rs.next()) {
                 Member member = new Member();
 
-                member.setId(rs.getString("id"));
+                member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
                 member.setColor(rs.getString("color"));
@@ -145,7 +145,7 @@ public class MemoryMemberRepository implements MemberRepository {
             while (rs.next()) {
                 Member member = new Member();
 
-                member.setId(rs.getString("id"));
+                member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
                 member.setPassword(rs.getString("password"));
                 member.setColor(rs.getString("color"));
@@ -175,12 +175,12 @@ public class MemoryMemberRepository implements MemberRepository {
         try {
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, member.getId());
+            pstmt.setLong(1, member.getId());
             pstmt.setString(2, member.getPassword());
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                member.setId(rs.getString("id"));
+                member.setId(rs.getLong("id"));
                 return member;
             } else {
                 return null;

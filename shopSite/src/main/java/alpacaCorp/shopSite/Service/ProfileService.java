@@ -8,7 +8,7 @@ public interface ProfileService {
     /*
      * 프로필 추가
      */
-    public String addProfile(Profile profile);
+    public Long addProfile(Profile profile);
 
     /*
      * 전체 프로필 조회

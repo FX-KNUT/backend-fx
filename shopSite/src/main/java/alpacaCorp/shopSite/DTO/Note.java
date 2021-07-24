@@ -9,7 +9,7 @@ import java.util.List;
 public class Note {
     public Note() {
     }
-    public Note(String subjectName, String content, String userid) {
+    public Note(String subjectName, String content, Long userid) {
         this.subjectName = subjectName;
         this.content = content;
         this.userid = userid;
@@ -20,7 +20,7 @@ public class Note {
     String content;
     Long inquiry;
     Timestamp date;
-    String userid;
+    Long userid;
     UploadFile file;
 
 }

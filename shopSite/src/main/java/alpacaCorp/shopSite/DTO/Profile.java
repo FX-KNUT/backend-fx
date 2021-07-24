@@ -7,7 +7,7 @@ public class Profile {
     /**
      * Color, Name, Image, Id, Start_date, End_date
      */
-    String id;
+    Long id;
     String name;
     String color;
     String img;

@@ -15,7 +15,7 @@ public interface MemberRepository {
     /*
      * 검색: ID 값으로 특정 회원 반환.
      */
-    Optional<Member> findById(String id);
+    Optional<Member> findById(Long id);
 
     /*
      * 검색: Name 값으로 회원 리스트 반환.

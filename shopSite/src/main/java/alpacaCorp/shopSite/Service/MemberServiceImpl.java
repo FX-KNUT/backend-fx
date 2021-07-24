@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Optional<Member> findById(String id) {
+    public Optional<Member> findById(Long id) {
         return memberRepository.findById(id);
     }
 

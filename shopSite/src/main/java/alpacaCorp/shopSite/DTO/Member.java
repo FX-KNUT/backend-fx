@@ -8,7 +8,7 @@ public class Member {
     /*
      * ID, Name, Password, Color, Image, Start date, End date
      */
-    String id;
+    Long id;
     String name;
     String password;
     String color;
@@ -20,7 +20,7 @@ public class Member {
 
     }
 
-    public Member(String id, String name, String password) {
+    public Member(Long id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

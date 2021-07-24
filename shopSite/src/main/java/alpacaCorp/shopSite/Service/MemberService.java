@@ -14,7 +14,7 @@ public interface MemberService {
     /*
      * 검색: ID 값으로 회원 조회
      */
-    Optional<Member> findById(String id);
+    Optional<Member> findById(Long id);
 
     /*
      * 검색: Name 값으로 회원 리스트 조회

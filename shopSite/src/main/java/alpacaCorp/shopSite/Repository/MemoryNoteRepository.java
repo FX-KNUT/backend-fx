@@ -43,7 +43,7 @@ public class MemoryNoteRepository implements NoteRepository{
             pstmt.setLong(3, 1);
             note.setDate(Timestamp.valueOf(LocalDateTime.now()));
             pstmt.setTimestamp(4, note.getDate());
-            pstmt.setString(5, note.getUserid());
+            pstmt.setLong(5, note.getUserid());
             if (note.getFile()!=null){
                 pstmt.setLong(6, note.getFile().getFileid());
             }else{
@@ -158,7 +158,7 @@ public class MemoryNoteRepository implements NoteRepository{
             while(rs.next()){
                 Note note = new Note();
                 note.setSubjectName(rs.getString("subjectname"));
-                note.setUserid(rs.getString("postman"));
+                note.setUserid(rs.getLong("postman"));
                 note.setContent(rs.getString("content"));
                 note.setDate(rs.getTimestamp("notedate"));
                 note.setId(rs.getLong("id"));
@@ -256,7 +256,7 @@ public class MemoryNoteRepository implements NoteRepository{
             rs.next();
             Note note = new Note();
             note.setSubjectName(rs.getString("subjectname"));
-            note.setUserid(rs.getString("postman"));
+            note.setUserid(rs.getLong("postman"));
             note.setContent(rs.getString("content"));
             note.setDate(rs.getTimestamp("notedate"));
             note.setId(rs.getLong("id"));
@@ -287,7 +287,7 @@ public class MemoryNoteRepository implements NoteRepository{
             rs.next();
             Note note = new Note();
             note.setSubjectName(rs.getString("subjectname"));
-            note.setUserid(rs.getString("postman"));
+            note.setUserid(rs.getLong("postman"));
             note.setContent(rs.getString("content"));
             note.setDate(rs.getTimestamp("notedate"));
             note.setId(rs.getLong("id"));
