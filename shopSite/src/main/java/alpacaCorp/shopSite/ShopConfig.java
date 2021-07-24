@@ -31,7 +31,7 @@ public class ShopConfig implements WebMvcConfigurer {
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
         dataSourceBuilder.url("jdbc:mysql://localhost:3306/healthdb?serverTimezone=UTC");
         dataSourceBuilder.username("jspbook");
-        dataSourceBuilder.password("PW");
+        dataSourceBuilder.password("jspstudy");
         return dataSourceBuilder.build();
     }
 
