@@ -38,21 +38,21 @@ public class MemberMangeController {
     public String View(Model model,
                        HttpServletRequest request,
                        @ModelAttribute Member member){
-        log.info("userid = {}, password = {}",member.getId(),member.getPassword());
+        log.info("userid = {}, password = {}", member.getId(), member.getPassword());
 //        MemberService bean = ac.getBean(MemberService.class);
 
-        Member userInfo = memberService.findMember(member);
+        Member findUser = memberService.findMember(member);
 
-        if(userInfo == null){
+        if(findUser == null){
             return "loginFail";
         }
 
-        String name = userInfo.getName();
-        log.info("hello {}",name);
+        String name = findUser.getName();
+        log.info("hello {}", name);
         //model.addAttribute("findUser",findUser);
         HttpSession session = request.getSession();
-        session.setAttribute("findUser", userInfo);
-        model.addAttribute("findUser",userInfo);
+        session.setAttribute("findUser", findUser);
+        model.addAttribute("findUser",findUser);
 
         return "login";
     }
@@ -68,14 +68,14 @@ public class MemberMangeController {
     }
 
     @RequestMapping("/alpaca/join/process")
-    public String JoinProcess(@RequestParam("id") Long id,
-                              @RequestParam("name") String name,
+    public String JoinProcess(@RequestParam("userid") Long id,
+                              @RequestParam("nickName") String name,
                               @RequestParam("password") String password,
                               @RequestParam("repassword") String repassword){
 //        MemberService bean = ac.getBean(MemberService.class);
         log.info("{}=={}========={}==================================",password,repassword,password.equals(repassword));
         if (password.equals(repassword)){
-            Member member = new Member(id, password, name);
+            Member member = new Member(id, name, password);
             boolean join = memberService.memberJoin(member);
             if(join==true){
                 return "login";

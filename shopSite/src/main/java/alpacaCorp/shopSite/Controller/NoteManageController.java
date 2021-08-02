@@ -47,6 +47,9 @@ public class NoteManageController {
         return "QnA/registerPage";
     }
 
+    /*
+     * 주의할 곳
+     */
     @RequestMapping("/alpaca/QnA/processRegister")
     public String registerProcess(HttpServletRequest request,
                                   HttpSession session,

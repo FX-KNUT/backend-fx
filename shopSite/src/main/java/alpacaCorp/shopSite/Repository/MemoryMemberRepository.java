@@ -27,7 +27,7 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public boolean userJoin(Member member) {
-        String sql = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO members(id, name, password) VALUES(?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -40,12 +40,15 @@ public class MemoryMemberRepository implements MemberRepository {
             pstmt.setLong(1, member.getId());
             pstmt.setString(2, member.getName());
             pstmt.setString(3, member.getPassword());
-            pstmt.setString(4, member.getColor());
-            pstmt.setString(5, member.getImg());
-            pstmt.setString(6, member.getStart_date());
-            pstmt.setString(7, member.getEnd_date());
+//            pstmt.setString(4, member.getColor());
+//            pstmt.setString(5, member.getImg());
+//            pstmt.setString(6, member.getStart_date());
+//            pstmt.setString(7, member.getEnd_date());
 
-            pstmt.executeUpdate();
+            int i = pstmt.executeUpdate();
+            if (i == 1) {
+                return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -166,7 +169,7 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public Member findMember(Member member) {
-        String sql = "SELECT * FROM members WHERE id=? and password=?";
+        String sql = "SELECT name FROM members WHERE id=? and password=?";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -180,8 +183,7 @@ public class MemoryMemberRepository implements MemberRepository {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                member.setId(rs.getLong("id"));
-                return member;
+                member.setName(rs.getString("name"));
             } else {
                 return null;
             }
@@ -190,6 +192,6 @@ public class MemoryMemberRepository implements MemberRepository {
         } finally {
             commonJDBC.close(conn, pstmt, rs);
         }
-        return null;
+        return member;
     }
 }
