@@ -16,9 +16,9 @@ public class Member {
     String start_date;
     String end_date;
 
-//    public Member() {
-//
-//    }
+    public Member() {
+
+    }
 
     public Member(Long id, String name, String password) {
         this.id = id;
