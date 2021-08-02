@@ -38,15 +38,12 @@ public class MemberMangeController {
     public String View(Model model,
                        HttpServletRequest request,
                        @ModelAttribute Member member){
-        log.info("userid = {}, password = {}", member.getId(), member.getPassword());
+        log.info("userid = {}, password = {}",member.getId(),member.getPassword());
 //        MemberService bean = ac.getBean(MemberService.class);
-
         Member findUser = memberService.findMember(member);
-
-        if(findUser == null){
+        if(findUser==null){
             return "loginFail";
         }
-
         String name = findUser.getName();
         log.info("hello {}", name);
         //model.addAttribute("findUser",findUser);
@@ -57,19 +54,22 @@ public class MemberMangeController {
         return "login";
     }
 
+
     @RequestMapping("/alpaca/login")
     public String Login(){
         return "login";
     }
+
 
     @RequestMapping("/alpaca/join")
     public String Join(){
         return "join";
     }
 
+
     @RequestMapping("/alpaca/join/process")
-    public String JoinProcess(@RequestParam("userid") Long id,
-                              @RequestParam("nickName") String name,
+    public String JoinProcess(@RequestParam("id") Long id,
+                              @RequestParam("name") String name,
                               @RequestParam("password") String password,
                               @RequestParam("repassword") String repassword){
 //        MemberService bean = ac.getBean(MemberService.class);
@@ -87,6 +87,8 @@ public class MemberMangeController {
         }
 
     }
+
+
     @RequestMapping("/alpaca/logout")
     public String Logout(HttpSession session){
         session.removeAttribute("findUser");

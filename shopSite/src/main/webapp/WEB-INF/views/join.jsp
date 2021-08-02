@@ -13,10 +13,10 @@
 <body>
 
     <form method="post" action="/alpaca/join/process">
-        <input type="text" name="nickName" placeholder="Name" required>
-        <input type="text" name="userid" placeholder="id" required>
-        <input type="password" name="password" placeholder="pw" required>
-        <input type="password" name="repassword" placeholder="rePw">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="id" placeholder="ID" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="repassword" placeholder="Repassword">
         <input type="submit" value="회원 가입">
         <input type="reset" value="취소">
     </form>
